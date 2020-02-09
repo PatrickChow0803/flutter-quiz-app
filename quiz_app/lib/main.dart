@@ -6,13 +6,27 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+// Data here does get recreated
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+// Data here doesn't get recreated <> means generic, MyApp is used as a pointer
+// State<MyApp> tells flutter that this state belongs to MyApp (The class above)
+class MyAppState extends State<MyApp> {
   var questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     void answerQuestion() {
-      questionIndex = questionIndex + 1;
+      // use the function setState for code that will change data and will update the ui
+      setState(() {
+        questionIndex = questionIndex + 1;
+      });
       print(questionIndex.toString());
     }
 
