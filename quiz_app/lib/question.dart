@@ -10,6 +10,17 @@ class Question extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(questionText);
+    // Need the container so that the text takes the full width of the container.
+    return Container(
+      // double.infinity makes it so that it takes as much space as it can get
+      width: double.infinity,
+      margin: EdgeInsets.all(20),
+      child: Text(
+        questionText,
+        style: TextStyle(fontSize: 28),
+        // because within a container, it now uses the parent widget as the measurement
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 }
