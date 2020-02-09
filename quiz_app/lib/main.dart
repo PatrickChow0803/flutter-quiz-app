@@ -11,23 +11,24 @@ class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
 // Data here doesn't get recreated <> means generic, MyApp is used as a pointer
 // State<MyApp> tells flutter that this state belongs to MyApp (The class above)
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+// Places the underscore makes the class private so that the class can only be accessed by MyApp. Cant only be used within this file.
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    void answerQuestion() {
+    void _answerQuestion() {
       // use the function setState for code that will change data and will update the ui
       setState(() {
-        questionIndex = questionIndex + 1;
+        _questionIndex = _questionIndex + 1;
       });
-      print(questionIndex.toString());
+      print(_questionIndex.toString());
     }
 
     var questions = [
@@ -41,10 +42,10 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Text(questions[questionIndex]),
+            Text(questions[_questionIndex]),
             RaisedButton(
               child: Text('Answer 1'),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
             ),
             RaisedButton(
               child: Text('Answer 2'),
