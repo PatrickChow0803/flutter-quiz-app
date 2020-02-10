@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/result.dart';
 import './question.dart';
 import './answer.dart';
-
+import './quiz.dart';
+import './result.dart';
 //void main() {
 //  (MyApp());
 //}
@@ -23,7 +25,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  final questions = const [
+  final _questions = const [
     {
       'questionText': "What\s your favorite color?",
       'answers': ['Black', 'Red', 'Green', 'White']
@@ -50,7 +52,7 @@ class _MyAppState extends State<MyApp> {
       });
       print(_questionIndex.toString());
 
-      if (_questionIndex < questions.length) {
+      if (_questionIndex < _questions.length) {
         print('We have more questions!');
       }
     }
@@ -62,24 +64,13 @@ class _MyAppState extends State<MyApp> {
         ),
         // _questionIndex < questions.length is an if statement. Perform everything after the ? if its true.
         // Else perform everything after the Column.
-        body: _questionIndex < questions.length
-            ? Column(
-                children: [
-                  // Acesses the questions variable with the index _questionIndex with the key as the string
-                  Question(
-                    questions[_questionIndex]['questionText'],
-                  ),
-                  // These lines of code is run for each item in the list. For each item, create an Answer widget.
-                  ...(questions[_questionIndex]['answers'] as List<String>)
-                      // answer is the string value of the list obtained within the map.
-                      .map((answer) {
-                    return Answer(_answerQuestion, answer);
-                  }).toList()
-                ],
+        body: _questionIndex < _questions.length
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions,
               )
-            : Center(
-                child: Text('You Did it!'),
-              ),
+            : Result(),
       ),
     );
   }
