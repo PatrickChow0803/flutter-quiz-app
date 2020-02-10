@@ -37,15 +37,15 @@ class _MyAppState extends State<MyApp> {
     var questions = [
       {
         'questionText': "What\s your favorite color?",
-        'answers:': ['Black', 'Red', 'Green', 'White']
+        'answers': ['Black', 'Red', 'Green', 'White']
       },
       {
         'questionText': "What\s your favorite animal?",
-        'answers:': ['Rabbit', 'Snake', 'Elephant', 'Lion']
+        'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion']
       },
       {
-        'questionText': "What\s your favorite color?",
-        'answers:': ['Max', 'Titly', 'Chance', 'Jess']
+        'questionText': "Who is your favorite teacher?",
+        'answers': ['Max', 'Titly']
       }
     ];
     return MaterialApp(
@@ -54,11 +54,17 @@ class _MyAppState extends State<MyApp> {
           title: Text('This is my first app'),
         ),
         body: Column(
-          children: <Widget>[
-            Question(questions[_questionIndex]),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+          children: [
+            // Acesses the questions variable with the index _questionIndex with the key as the string
+            Question(
+              questions[_questionIndex]['questionText'],
+            ),
+            // These lines of code is run for each item in the list. For each item, create an Answer widget.
+            ...(questions[_questionIndex]['answers'] as List<String>)
+            // answer is the string value of the list obtained within the map.
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),

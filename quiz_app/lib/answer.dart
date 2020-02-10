@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class Answer extends StatelessWidget {
   // Function = Value stored in this property has to be a function and a pointer
   final Function selectHandeler;
+  final String answerText;
 
-  Answer(this.selectHandeler);
+  Answer(this.selectHandeler, this.answerText);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class Answer extends StatelessWidget {
       child: RaisedButton(
         color: Colors.blue,
         textColor: Colors.white,
-        child: Text('Answer 1'),
+        child: Text(answerText),
         onPressed: selectHandeler,
       ),
     );
