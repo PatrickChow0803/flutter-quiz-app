@@ -33,9 +33,20 @@ class _MyAppState extends State<MyApp> {
       print(_questionIndex.toString());
     }
 
+    // questions contains an array of maps
     var questions = [
-      'What\'s your favorite color?',
-      'What\'s your favorite animal?'
+      {
+        'questionText': "What\s your favorite color?",
+        'answers:': ['Black', 'Red', 'Green', 'White']
+      },
+      {
+        'questionText': "What\s your favorite animal?",
+        'answers:': ['Rabbit', 'Snake', 'Elephant', 'Lion']
+      },
+      {
+        'questionText': "What\s your favorite color?",
+        'answers:': ['Max', 'Titly', 'Chance', 'Jess']
+      }
     ];
     return MaterialApp(
       home: Scaffold(
